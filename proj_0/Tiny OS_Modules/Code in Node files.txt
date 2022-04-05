@@ -1,0 +1,16 @@
+These are the lines for nodeC.nc:
+
+//this code allows each node to interface with the sample module
+components sampleC as sampleMod;
+Node.sampleMod -> sampleMod;
+
+These are the lines for node.nc:
+
+//this line allows code in node to use the commands provided by the sampleModule
+uses interface sampleModule as sampleMod;
+
+To show calling the test function, optionally add these lines inside event void booted()
+
+bool testSampleModule = 0;
+testSampleModule = call sampleMod.sampleFunction();
+dbg(GENERAL_CHANNEL, "Sample module connected = %d \n", testSampleModule);
